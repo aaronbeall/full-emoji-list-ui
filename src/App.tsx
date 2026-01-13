@@ -58,9 +58,9 @@ function getBaseAndVariant(name: string) {
 function App() {
   const [search, setSearch] = useState('');
   const [selectedStatuses, setSelectedStatuses] = useState<Set<string>>(
-    new Set(['fully-qualified'])
+    new Set(['fully-qualified', 'component'])
   );
-  const [groupVariants, setGroupVariants] = useState(false);
+  const [groupVariants, setGroupVariants] = useState(true);
   const [selectedEmojiId, setSelectedEmojiId] = useState<string | null>(null);
 
   const all = useMemo(() => 
@@ -265,38 +265,38 @@ function App() {
                 </tr>
                 <tr>
                   <th>Name</th>
-                  <td>{selectedEmoji.Name}</td>
+                  <td><code>{selectedEmoji.Name}</code></td>
                 </tr>
                 <tr>
                   <th>Version</th>
-                  <td>{selectedEmoji.Version}</td>
+                  <td><button onClick={() => setSearch(selectedEmoji.Version)}>{selectedEmoji.Version}</button></td>
                 </tr>
                 <tr>
                   <th>CodePointsHex</th>
-                  <td>{selectedEmoji.CodePointsHex.join(', ')}</td>
+                  <td><code>{selectedEmoji.CodePointsHex.join(', ')}</code></td>
                 </tr>
                 <tr>
                   <th>Status</th>
-                  <td>{selectedEmoji.Status}</td>
+                  <td><button onClick={() => setSelectedStatuses(new Set([selectedEmoji.Status]))}>{selectedEmoji.Status}</button></td>
                 </tr>
                 {selectedEmoji.Group && (
                   <tr>
                     <th>Group</th>
-                    <td>{selectedEmoji.Group}</td>
+                    <td><button onClick={() => setSearch(selectedEmoji.Group!)}>{selectedEmoji.Group}</button></td>
                   </tr>
                 )}
                 {selectedEmoji.SubGroup && (
                   <tr>
                     <th>SubGroup</th>
-                    <td>{selectedEmoji.SubGroup}</td>
+                    <td><button onClick={() => setSearch(selectedEmoji.SubGroup!)}>{selectedEmoji.SubGroup}</button></td>
                   </tr>
                 )}
                 {selectedEmoji.variants && (
                   <tr>
-                    <th>Variants</th>
+                    <th>Variants ({selectedEmoji.variants.length})</th>
                     <td>
                       {selectedEmoji.variants.map(variant => (
-                        <button key={variant.Name} title={`${variant.Emoji} ${variant.variant} (${variant.Status})`} onClick={() => setSearch(variant.variant)}>
+                        <button key={variant.Name} className='emoji-variant' title={`${variant.Emoji} ${variant.variant} (${variant.Status})`} onClick={() => setSearch(variant.variant)}>
                           {variant.Emoji}
                         </button>
                       ))}
