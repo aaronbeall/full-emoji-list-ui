@@ -1,0 +1,50 @@
+.emoji-app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  font-family: system-ui, sans-serif;
+}
+
+.emoji-search {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.emoji-group {
+  margin-bottom: 2rem;
+}
+
+.emoji-group-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #444;
+}
+
+.emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+  gap: 6px;
+}
+
+.emoji-item {
+  font-size: 22px;
+  line-height: 1;
+  padding: 6px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.emoji-item:hover {
+  background: rgba(0, 0, 0, 0.06);
+  transform: scale(1.15);
+}
+
+.emoji-item:focus {
+  outline: 2px solid #4c9ffe;
+  outline-offset: 2px;
+}
